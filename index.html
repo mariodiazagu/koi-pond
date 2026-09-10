@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174c61"><title>Koi</title>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174c61"><title>Koi · Un pequeño estanque</title>
 <style>
 :root{color-scheme:dark;font-family:ui-sans-serif,system-ui,sans-serif;color:#ece9cf;background:#163d53}*{box-sizing:border-box}body{margin:0;overflow:hidden}canvas{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #eabb72;outline-offset:5px}.masthead{position:fixed;left:40px;top:34px;pointer-events:none}.eyebrow{font-size:11px;letter-spacing:.3em;color:#a6bcb0}.title{font-family:Georgia,serif;font-weight:normal;font-size:44px;letter-spacing:-2px;margin:7px 0}.subtitle{font-size:13px;color:#b0c5b8}.top-actions{position:fixed;right:32px;top:34px;display:flex;gap:9px}.icon{border:1px solid #a7bf9c35;background:#112e2caa;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;backdrop-filter:blur(12px)}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.4}.panel{position:fixed;right:32px;top:91px;width:290px;padding:24px;background:#102e2ce8;border:1px solid #abc69f30;border-radius:15px;box-shadow:0 20px 60px #041e2440;backdrop-filter:blur(16px)}.panel[hidden]{display:none}.panel h2{font:24px Georgia,serif;margin:0 0 24px}.row{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:14px}output{color:#e8b86e;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#dfaf67;cursor:pointer;margin:0 0 24px}input[type=checkbox]{accent-color:#dfaf67;width:18px;height:18px}.note{font-size:12px;line-height:1.7;color:#a5beb0;margin:10px 0 0}.footer{position:fixed;left:40px;right:40px;bottom:28px;display:flex;justify-content:space-between;gap:20px;color:#b4c6b7;font-size:12px;letter-spacing:.04em;pointer-events:none}.footer .legend{opacity:.65}.chrome{transition:opacity .6s}.zen .chrome{opacity:0;pointer-events:none;visibility:hidden}.zen canvas{cursor:none}.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#0c262be8;border:1px solid #a7bf9c35;padding:12px 20px;border-radius:30px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .5s}.toast.show{opacity:1}@media(max-width:600px){.masthead{left:23px;top:24px}.title{font-size:36px}.top-actions{right:20px;top:24px}.panel{right:20px;top:82px;width:min(290px,calc(100vw - 40px))}.footer{left:23px;right:23px;bottom:24px}.legend{display:none}.subtitle{font-size:12px}}
+.feed{position:fixed;bottom:58px;right:40px;border:1px solid #a7bf9c55;background:#112e2ccc;border-radius:22px;padding:10px 16px;font-size:14px}.feed[aria-pressed=true]{background:#785c33}.session{font-variant-numeric:tabular-nums;white-space:nowrap}.panel{max-height:calc(100dvh - 110px);overflow:auto}
 </style></head><body>
 <canvas id="pond" aria-label="Estanque animado de peces koi. Pulsa el agua para crear ondas." tabindex="0"></canvas>
-<header class="masthead chrome"><div class="eyebrow"></div><h1 class="title">Koi pond</h1><div class="subtitle"></div></header>
+<header class="masthead chrome"><div class="eyebrow">UN PEQUEÑO ESTANQUE</div><h1 class="title">Koi pond</h1><div class="subtitle">Un momento, sin prisa.</div></header>
 <div class="top-actions chrome"><button class="icon" id="settings" aria-label="Ajustes" aria-expanded="false" aria-controls="panel" title="Ajustes"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="#163b35"/><circle cx="15" cy="17" r="3" fill="#163b35"/></svg></button><button class="icon" id="fullscreen" aria-label="Pantalla completa" title="Pantalla completa · F"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button></div>
 <section class="panel chrome" id="panel" hidden><h2>La vida del estanque</h2><label class="row" for="population">Cantidad de peces <output id="count">18</output></label><input id="population" type="range" min="0" max="60" value="18"><label class="row" for="pace">Ritmo <output id="paceValue">Pausado</output></label><input id="pace" type="range" min="0.4" max="1.6" step="0.1" value="1.0"><label class="row" for="life">Ciclo de vida <input id="life" type="checkbox" checked></label><p class="note">Con el tiempo pueden nacer alevines y despedirse algunos peces. La población cambia suavemente, hasta un máximo de 60.</p><p class="note">F · pantalla completa<br>H · ocultar controles &nbsp; Esc · volver<br>Espacio · pausar</p><p class="note" id="events" aria-live="polite">El estanque acaba de despertar.</p></section>
-<footer class="footer chrome"><span id="status">18 koi · agua en calma</span><span class="legend">Toca el agua y deja que se acerquen.</span></footer><div class="toast" id="toast" role="status"></div>
+<button id="feeding" class="feed chrome" aria-pressed="false">Dar de comer · C</button><footer class="footer chrome"><span id="status">18 koi · agua en calma</span><span class="session" id="session" aria-label="Tiempo de sesión">00:00:00</span><span class="legend" id="hint">Toca el agua y deja que se acerquen.</span></footer><div class="toast" id="toast" role="status"></div>
 <script>
 'use strict';
 // Standalone Canvas 2D. All distances are in logical, low-resolution pixels.
@@ -17,6 +18,11 @@ const CONFIG={maxFish:60,birthInterval:[360,660],deathInterval:[1200,2100],matur
 const palettes=[{weight:32,base:'#dc973e',light:'#f5c56b',dark:'#995330'},{weight:24,base:'#dccfa4',light:'#f5e7be',dark:'#929c82'},{weight:19,base:'#a44a47',light:'#cf7160',dark:'#622f40'},{weight:14,base:'#488f86',light:'#78b4a1',dark:'#295c5d'},{weight:8,base:'#d6743c',light:'#f3ac5a',dark:'#974334'},{weight:3,base:'#354e50',light:'#67817a',dark:'#243637'}];
 let W=0,H=0,fish=[],ripples=[],targets=[],time=0,last=0,paused=false,zen=false,birthAt=rand(...CONFIG.birthInterval),deathAt=rand(...CONFIG.deathInterval),toastTimer;
 let weather={next:rand(35,65),until:0,intensity:0,drops:0,raining:false},breezeAt=rand(8,18);
+const openedAt=Date.now();let feeding=false,food=[],lastFeed=-10,clockSecond=-1;
+function updateClock(){const seconds=Math.floor((Date.now()-openedAt)/1000);if(seconds===clockSecond)return;clockSecond=seconds;$('#session').textContent=[Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(n=>String(n).padStart(2,'0')).join(':');}
+function toggleFeeding(){feeding=!feeding;$('#feeding').setAttribute('aria-pressed',String(feeding));$('#feeding').textContent=feeding?'Comida activada · C':'Dar de comer · C';$('#hint').textContent=feeding?'Pulsa el agua para soltar comida.':'Toca el agua y deja que se acerquen.';}
+function feed(x,y){if(paused||time-lastFeed<.25)return;lastFeed=time;for(let i=0;i<6&&food.length<90;i++){const a=rand(0,TAU),r=rand(2,12);food.push({x:clamp(x+Math.cos(a)*r,3,W-3),y:clamp(y+Math.sin(a)*r,3,H-3),t:time,eaten:false});}addRipple(x,y,'rain');}
+function stepFood(dt){for(const p of food){const flow=surfaceFlow(p.x,p.y);p.x=clamp(p.x+flow.x*dt*.5,2,W-2);p.y=clamp(p.y+flow.y*dt*.5,2,H-2);}food=food.filter(p=>!p.eaten&&time-p.t<45);}
 let backdrop=document.createElement('canvas'), pads=[],motes=[];
 function palette(){let n=Math.random()*100;return palettes.find(p=>(n-=p.weight)<0)||palettes[0]}
 function makeFish(x=rand(45,W-45),y=rand(45,H-45),baby=false){const length=rand(19,31);return {x,y,a:rand(0,TAU),turn:0,speed:rand(14,23),velocity:15,stroke:rand(0,TAU),wander:rand(-1,1),wanderNext:rand(-1,1),wanderClock:0,wanderDuration:rand(3,7),interest:0,social:rand(.15,.75),yielding:0,curiosity:rand(.1,1),length,width:rand(.20,.28),phase:rand(0,100),age:baby?0:rand(600,1600),baby,palette:palette(),patches:Math.random()<.72?Array.from({length:Math.random()<.65?1:2},()=>({u:rand(.25,.75),v:rand(-.45,.45),rx:rand(.09,.18),ry:rand(.32,.7),seed:rand(0,TAU),white:Math.random()<.4})):[],target:null,cooldown:0,opacity:1,dying:false};}
@@ -45,7 +51,7 @@ function stepPads(dt){for(const p of pads){
  p.vx+=ax*dt;p.vy+=ay*dt;p.x=clamp(p.x+p.vx*dt,p.r+1,W-p.r-1);p.y=clamp(p.y+p.vy*dt,p.r+1,H-p.r-1);p.spin=Math.sin(time*.085+p.phase)*.12+(p.vx-p.vy)*.06;
 }}
 // The same distorted wavefront drives both the visible contour and leaf forces.
-function waveRadius(r,age,angle){return (2+Math.max(0,age)*r.speed)*(1+.085*Math.sin(angle*3+r.seed+age*.3)+.045*Math.sin(angle*5-r.seed)+.055*Math.cos(angle*2+r.seed));}
+function waveRadius(r,age,angle){return (2+Math.max(0,age)*r.speed)*(1+.012*Math.cos(angle*2+r.seed));}
 function addRipple(x,y,kind='touch'){
  const r={x,y,t:time,seed:rand(0,TAU),kind,speed:kind==='rain'?10:kind==='breeze'?21:17,life:kind==='rain'?2.5:kind==='breeze'?8:5.5,strength:kind==='rain'?.23:kind==='breeze'?.85:1};
  ripples.push(r);if(ripples.length>CONFIG.maxRipples)ripples.shift();return r;
@@ -60,6 +66,13 @@ function stepWeather(dt){
  if(time>=breezeAt){breezeAt=time+rand(12,26);addRipple(rand(0,W),rand(0,H),'breeze');}
 }
 function drawSurface(){
+ // A gently warped cellular field: faint caustic seams inspired by the reference.
+ const cell=48;
+ for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){
+  const wx=x+Math.sin(y*.022+time*.18)*7,wy=y+Math.sin(x*.018-time*.14)*7,gx=Math.floor(wx/cell),gy=Math.floor(wy/cell);let first=Infinity,second=Infinity;
+  for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++){const cx=gx+i,cy=gy+j,seed=Math.sin(cx*127.1+cy*311.7)*43758.5453,q=seed-Math.floor(seed),px=(cx+.5)*cell+Math.sin(q*TAU+time*.10)*12,py=(cy+.5)*cell+Math.cos(q*17+time*.08)*12,d=Math.hypot(wx-px,wy-py);if(d<first){second=first;first=d;}else if(d<second)second=d;}
+  const edge=Math.exp(-Math.pow((second-first)/2.8,2)),veil=.45+.55*Math.pow(Math.sin(x*.008+y*.005),2);if(edge>.05){ctx.fillStyle=`rgba(182,228,233,${edge*veil*.065*(1-weather.intensity*.5)})`;ctx.fillRect(x,y,3,3);}
+ }
  // Intersecting wave bands create a shifting, broken caustic texture.
  const sun=1-weather.intensity*.78;
  for(let y=0;y<H;y+=5)for(let x=0;x<W;x+=5){
@@ -77,7 +90,7 @@ function drawSurface(){
    const alpha=Math.pow(Math.max(0,1-a/r.life),1.6)*(r.kind==='breeze'?.14:r.kind==='rain'?.28:.40);
    ctx.strokeStyle=`rgba(190,227,231,${alpha})`;ctx.lineWidth=.7;ctx.beginPath();
    for(let j=0;j<=72;j++){const angle=j*TAU/72,rad=waveRadius(r,a,angle),x=r.x+Math.cos(angle)*rad,y=r.y+Math.sin(angle)*rad;
-    if(j===0||Math.sin(angle*4+r.seed)>.86)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    if(j===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
    }ctx.stroke();
   }
   if(r.kind==='rain'&&age<.18){ctx.strokeStyle=`rgba(216,237,243,${(1-age/.18)*.45})`;ctx.beginPath();ctx.moveTo(r.x-1,r.y-4);ctx.lineTo(r.x,r.y);ctx.stroke();}
@@ -85,11 +98,18 @@ function drawSurface(){
 }
 function sync(){const n=fish.filter(f=>!f.dying).length;$('#count').value=n;$('#population').value=n;$('#status').textContent=`${n} koi · ${paused?'en pausa':weather.raining?'lluvia suave':'agua en calma'}`;}
 function announce(s){$('#events').textContent=s;sync()}
-function step(dt){time+=dt;stepWeather(dt);const neighbors=fish.map(f=>({x:f.x,y:f.y,a:f.a,velocity:f.velocity,length:f.length,dying:f.dying}));const pace=+$('#pace').value;
+function step(dt){time+=dt;stepWeather(dt);stepFood(dt);const neighbors=fish.map(f=>({x:f.x,y:f.y,a:f.a,velocity:f.velocity,length:f.length,dying:f.dying}));const pace=+$('#pace').value;
 for(const f of fish){f.age+=dt;f.cooldown=Math.max(0,f.cooldown-dt);if(f.dying){f.opacity-=dt/9;continue}// Each fish chooses a gently evolving heading, then steers with inertia.
 f.wanderClock+=dt;if(f.wanderClock>=f.wanderDuration){f.wander=f.wanderNext;f.wanderNext=rand(-1,1);f.wanderClock=0;f.wanderDuration=rand(3,7);}
 const u=f.wanderClock/f.wanderDuration,ease=u*u*(3-2*u),wander=f.wander+(f.wanderNext-f.wander)*ease;
 let desired=f.a+wander*.75,dx=Math.cos(desired),dy=Math.sin(desired);
+f.satiety=Math.max(0,(f.satiety||0)-dt*.018);f.bite=Math.max(0,(f.bite||0)-dt);
+if(f.meal&&(f.meal.eaten||!food.includes(f.meal)))f.meal=null;
+if(!f.meal&&f.satiety<1&&food.length){let best=150*(.65+f.curiosity*.6);for(const p of food){const d=Math.hypot(p.x-f.x,p.y-f.y);if(!p.eaten&&d<best){best=d;f.meal=p;}}}
+if(f.meal){const growth=f.baby?.38+.62*Math.min(1,f.age/480):1,mouth=f.length*growth*.45,mx=f.x+Math.cos(f.a)*mouth,my=f.y+Math.sin(f.a)*mouth;
+ if(Math.hypot(f.meal.x-mx,f.meal.y-my)<5&&f.bite===0){f.meal.eaten=true;f.meal=null;f.satiety+=.24;f.bite=.6;}
+ else{const tx=f.meal.x-f.x,ty=f.meal.y-f.y,d=Math.hypot(tx,ty);dx+=tx/Math.max(d,1)*3.2;dy+=ty/Math.max(d,1)*3.2;f.target=null;}
+}
 if(f.target&&(!targets.includes(f.target)||Math.hypot(f.target.x-f.x,f.target.y-f.y)<15)){f.target=null;f.cooldown=rand(5,15)}
 f.interest+=((f.target?1:0)-f.interest)*(1-Math.exp(-dt*1.4));
 if(f.target){const tx=f.target.x-f.x,ty=f.target.y-f.y,d=Math.hypot(tx,ty);dx+=tx/Math.max(d,1)*2.8*f.curiosity*f.interest;dy+=ty/Math.max(d,1)*2.8*f.curiosity*f.interest;}
@@ -117,7 +137,8 @@ f.yielding+=(risk-f.yielding)*(1-Math.exp(-dt*3));
 
 const diff=Math.atan2(Math.sin(Math.atan2(dy,dx)-f.a),Math.cos(Math.atan2(dy,dx)-f.a));
 f.turn+=(clamp(diff*1.6,-1.15,1.15)-f.turn)*(1-Math.exp(-dt*2.8));f.a+=f.turn*dt;
-const cruise=f.speed*pace*(.92+.12*Math.sin(time*.7+f.phase))*(1+f.interest*f.curiosity*.35)*(1-f.yielding*.38);
+const mealDistance=f.meal?Math.hypot(f.meal.x-f.x,f.meal.y-f.y):Infinity;
+const cruise=f.speed*pace*(.92+.12*Math.sin(time*.7+f.phase))*(1+f.interest*f.curiosity*.35)*(1-f.yielding*.38)*(f.meal?clamp(mealDistance/30,.45,1.25):1);
 f.velocity+=(cruise-f.velocity)*(1-Math.exp(-dt*1.2));f.stroke+=dt*(3.2+f.velocity*.12);
 f.x=clamp(f.x+Math.cos(f.a)*f.velocity*dt,2,W-2);f.y=clamp(f.y+Math.sin(f.a)*f.velocity*dt,2,H-2);}
 stepPads(dt);
@@ -145,8 +166,10 @@ drawSurface();
 for(const p of pads){ctx.save();ctx.translate(p.x+3,p.y+5);ctx.rotate(p.a+p.spin);polygon(p.points,'#071f2b50');ctx.restore();ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a+p.spin);polygon(p.points,['#385e41','#486e45','#315941'][p.tone]);ctx.save();ctx.clip();const shade=ctx.createLinearGradient(-p.r,-p.r,p.r,p.r);shade.addColorStop(0,'#b1c07830');shade.addColorStop(.5,'#60895608');shade.addColorStop(1,'#082f3260');ctx.fillStyle=shade;ctx.fillRect(-p.r*1.2,-p.r*1.2,p.r*2.4,p.r*2.4);ctx.restore();
 ctx.lineWidth=.65;ctx.strokeStyle='#abc38428';for(let i=1;i<7;i++){const a=i*TAU/7;ctx.beginPath();ctx.moveTo(p.r*.08,0);ctx.quadraticCurveTo(Math.cos(a+.18)*p.r*.35,Math.sin(a+.18)*p.r*.35,Math.cos(a)*p.r*.79,Math.sin(a)*p.r*.74);ctx.stroke()}ctx.restore()}}
 
-function frame(now){let dt=Math.min((now-last)/1000||0,.05);last=now;if(!paused&&!document.hidden)step(dt);draw();requestAnimationFrame(frame)}
-function splash(x,y){if(paused)return;const t=addRipple(x,y);targets.push(t);if(targets.length>8)targets.shift();for(const f of fish)if(!f.dying&&f.cooldown===0&&Math.hypot(f.x-x,f.y-y)<Math.min(150,W*.45)&&Math.random()<f.curiosity){f.target=t}}
+function frame(now){let dt=Math.min((now-last)/1000||0,.05);last=now;updateClock();if(!paused&&!document.hidden)step(dt);draw();for(const p of food){if(p.eaten)continue;ctx.globalAlpha=Math.min(1,(45-time+p.t)/5);ctx.fillStyle='#493b2b';ctx.fillRect(p.x+1,p.y+1,2,2);ctx.fillStyle='#efce83';ctx.fillRect(p.x,p.y,1,1);}ctx.globalAlpha=1;requestAnimationFrame(frame)}
+function splash(x,y){if(paused)return;if(feeding){feed(x,y);return;}const t=addRipple(x,y);targets.push(t);if(targets.length>8)targets.shift();for(const f of fish)if(!f.dying&&f.cooldown===0&&Math.hypot(f.x-x,f.y-y)<Math.min(150,W*.45)&&Math.random()<f.curiosity){f.target=t}}
+$('#feeding').onclick=toggleFeeding;
+document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='c'&&!e.target.matches('input'))toggleFeeding();});
 canvas.addEventListener('pointerdown',e=>{const r=canvas.getBoundingClientRect();splash((e.clientX-r.left)/r.width*W,(e.clientY-r.top)/r.height*H)});
 $('#population').addEventListener('input',e=>{fish=fish.filter(f=>!f.dying);let n=+e.target.value;while(fish.length<n)fish.push(makeFish());fish.length=n;sync()});$('#pace').addEventListener('input',e=>$('#paceValue').value=+e.target.value<.8?'Muy suave':+e.target.value<1.2?'Pausado':'Animado');
 $('#settings').onclick=()=>{const open=$('#panel').hidden;$('#panel').hidden=!open;$('#settings').setAttribute('aria-expanded',String(open))};
