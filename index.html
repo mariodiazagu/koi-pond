@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#123c38"><title>Koi · Un pequeño estanque</title>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174c61"><title>Koi · Un pequeño estanque</title>
 <style>
-:root{color-scheme:dark;font-family:ui-sans-serif,system-ui,sans-serif;color:#ece9cf;background:#103631}*{box-sizing:border-box}body{margin:0;overflow:hidden}canvas{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #eabb72;outline-offset:5px}.masthead{position:fixed;left:40px;top:34px;pointer-events:none}.eyebrow{font-size:11px;letter-spacing:.3em;color:#a6bcb0}.title{font-family:Georgia,serif;font-weight:normal;font-size:44px;letter-spacing:-2px;margin:7px 0}.subtitle{font-size:13px;color:#b0c5b8}.top-actions{position:fixed;right:32px;top:34px;display:flex;gap:9px}.icon{border:1px solid #a7bf9c35;background:#112e2caa;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;backdrop-filter:blur(12px)}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.4}.panel{position:fixed;right:32px;top:91px;width:290px;padding:24px;background:#102e2ce8;border:1px solid #abc69f30;border-radius:15px;box-shadow:0 20px 60px #041e2440;backdrop-filter:blur(16px)}.panel[hidden]{display:none}.panel h2{font:24px Georgia,serif;margin:0 0 24px}.row{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:14px}output{color:#e8b86e;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#dfaf67;cursor:pointer;margin:0 0 24px}input[type=checkbox]{accent-color:#dfaf67;width:18px;height:18px}.note{font-size:12px;line-height:1.7;color:#a5beb0;margin:10px 0 0}.footer{position:fixed;left:40px;right:40px;bottom:28px;display:flex;justify-content:space-between;gap:20px;color:#b4c6b7;font-size:12px;letter-spacing:.04em;pointer-events:none}.footer .legend{opacity:.65}.chrome{transition:opacity .6s}.zen .chrome{opacity:0;pointer-events:none;visibility:hidden}.zen canvas{cursor:none}.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#0c262be8;border:1px solid #a7bf9c35;padding:12px 20px;border-radius:30px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .5s}.toast.show{opacity:1}@media(max-width:600px){.masthead{left:23px;top:24px}.title{font-size:36px}.top-actions{right:20px;top:24px}.panel{right:20px;top:82px;width:min(290px,calc(100vw - 40px))}.footer{left:23px;right:23px;bottom:24px}.legend{display:none}.subtitle{font-size:12px}}
+:root{color-scheme:dark;font-family:ui-sans-serif,system-ui,sans-serif;color:#ece9cf;background:#163d53}*{box-sizing:border-box}body{margin:0;overflow:hidden}canvas{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #eabb72;outline-offset:5px}.masthead{position:fixed;left:40px;top:34px;pointer-events:none}.eyebrow{font-size:11px;letter-spacing:.3em;color:#a6bcb0}.title{font-family:Georgia,serif;font-weight:normal;font-size:44px;letter-spacing:-2px;margin:7px 0}.subtitle{font-size:13px;color:#b0c5b8}.top-actions{position:fixed;right:32px;top:34px;display:flex;gap:9px}.icon{border:1px solid #a7bf9c35;background:#112e2caa;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;backdrop-filter:blur(12px)}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.4}.panel{position:fixed;right:32px;top:91px;width:290px;padding:24px;background:#102e2ce8;border:1px solid #abc69f30;border-radius:15px;box-shadow:0 20px 60px #041e2440;backdrop-filter:blur(16px)}.panel[hidden]{display:none}.panel h2{font:24px Georgia,serif;margin:0 0 24px}.row{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:14px}output{color:#e8b86e;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#dfaf67;cursor:pointer;margin:0 0 24px}input[type=checkbox]{accent-color:#dfaf67;width:18px;height:18px}.note{font-size:12px;line-height:1.7;color:#a5beb0;margin:10px 0 0}.footer{position:fixed;left:40px;right:40px;bottom:28px;display:flex;justify-content:space-between;gap:20px;color:#b4c6b7;font-size:12px;letter-spacing:.04em;pointer-events:none}.footer .legend{opacity:.65}.chrome{transition:opacity .6s}.zen .chrome{opacity:0;pointer-events:none;visibility:hidden}.zen canvas{cursor:none}.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#0c262be8;border:1px solid #a7bf9c35;padding:12px 20px;border-radius:30px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .5s}.toast.show{opacity:1}@media(max-width:600px){.masthead{left:23px;top:24px}.title{font-size:36px}.top-actions{right:20px;top:24px}.panel{right:20px;top:82px;width:min(290px,calc(100vw - 40px))}.footer{left:23px;right:23px;bottom:24px}.legend{display:none}.subtitle{font-size:12px}}
 </style></head><body>
 <canvas id="pond" aria-label="Estanque animado de peces koi. Pulsa el agua para crear ondas." tabindex="0"></canvas>
 <header class="masthead chrome"><div class="eyebrow">UN PEQUEÑO ESTANQUE</div><h1 class="title">Koi pond</h1><div class="subtitle">Un momento, sin prisa.</div></header>
@@ -13,13 +13,14 @@
 // Standalone Canvas 2D. All distances are in logical, low-resolution pixels.
 const canvas=document.querySelector('#pond'), ctx=canvas.getContext('2d',{alpha:false});
 const $=s=>document.querySelector(s), TAU=Math.PI*2, rand=(a,b)=>a+Math.random()*(b-a), clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const CONFIG={maxFish:60,birthInterval:[360,660],deathInterval:[1200,2100],matureAge:480};
+const CONFIG={maxFish:60,birthInterval:[360,660],deathInterval:[1200,2100],matureAge:480,rainInterval:[90,220],rainDuration:[25,50],maxRipples:96};
 const palettes=[{weight:32,base:'#dc973e',light:'#f5c56b',dark:'#995330'},{weight:24,base:'#dccfa4',light:'#f5e7be',dark:'#929c82'},{weight:19,base:'#a44a47',light:'#cf7160',dark:'#622f40'},{weight:14,base:'#488f86',light:'#78b4a1',dark:'#295c5d'},{weight:8,base:'#d6743c',light:'#f3ac5a',dark:'#974334'},{weight:3,base:'#354e50',light:'#67817a',dark:'#243637'}];
 let W=0,H=0,fish=[],ripples=[],targets=[],time=0,last=0,paused=false,zen=false,birthAt=rand(...CONFIG.birthInterval),deathAt=rand(...CONFIG.deathInterval),toastTimer;
+let weather={next:rand(35,65),until:0,intensity:0,drops:0,raining:false},breezeAt=rand(8,18);
 let backdrop=document.createElement('canvas'), pads=[],motes=[];
 function palette(){let n=Math.random()*100;return palettes.find(p=>(n-=p.weight)<0)||palettes[0]}
-function makeFish(x=rand(45,W-45),y=rand(45,H-45),baby=false){const length=rand(19,31);return {x,y,a:rand(0,TAU),turn:0,speed:rand(14,23),velocity:15,stroke:rand(0,TAU),wander:rand(-1,1),wanderNext:rand(-1,1),wanderClock:0,wanderDuration:rand(3,7),interest:0,curiosity:rand(.1,1),length,width:rand(.20,.28),phase:rand(0,100),age:baby?0:rand(600,1600),baby,palette:palette(),patches:Math.random()<.72?Array.from({length:Math.random()<.65?1:2},()=>({u:rand(.25,.75),v:rand(-.45,.45),rx:rand(.09,.18),ry:rand(.32,.7),seed:rand(0,TAU),white:Math.random()<.4})):[],target:null,cooldown:0,opacity:1,dying:false};}
-function resize(){const oldW=W||1,oldH=H||1;W=Math.max(180,Math.round(innerWidth/2.5));H=Math.max(180,Math.round(innerHeight/2.5));canvas.width=W;canvas.height=H;for(const f of fish){f.x=f.x/oldW*W;f.y=f.y/oldH*H}backdrop.width=W;backdrop.height=H;const b=backdrop.getContext('2d');let g=b.createRadialGradient(W*.5,H*.42,0,W*.5,H*.5,Math.max(W,H)*.72);g.addColorStop(0,'#285e54');g.addColorStop(.5,'#1b4943');g.addColorStop(1,'#102e31');b.fillStyle=g;b.fillRect(0,0,W,H);for(let i=0;i<W*H*.045;i++){b.fillStyle=Math.random()<.5?'#8aaa7420':'#082a3428';b.fillRect(rand(0,W)|0,rand(0,H)|0,Math.random()<.1?2:1,1)}if(!pads.length)generatePads();else for(const p of pads){p.x*=W/oldW;p.y*=H/oldH;p.anchorX*=W/oldW;p.anchorY*=H/oldH;}
+function makeFish(x=rand(45,W-45),y=rand(45,H-45),baby=false){const length=rand(19,31);return {x,y,a:rand(0,TAU),turn:0,speed:rand(14,23),velocity:15,stroke:rand(0,TAU),wander:rand(-1,1),wanderNext:rand(-1,1),wanderClock:0,wanderDuration:rand(3,7),interest:0,social:rand(.15,.75),yielding:0,curiosity:rand(.1,1),length,width:rand(.20,.28),phase:rand(0,100),age:baby?0:rand(600,1600),baby,palette:palette(),patches:Math.random()<.72?Array.from({length:Math.random()<.65?1:2},()=>({u:rand(.25,.75),v:rand(-.45,.45),rx:rand(.09,.18),ry:rand(.32,.7),seed:rand(0,TAU),white:Math.random()<.4})):[],target:null,cooldown:0,opacity:1,dying:false};}
+function resize(){const oldW=W||1,oldH=H||1;W=Math.max(180,Math.round(innerWidth/2.5));H=Math.max(180,Math.round(innerHeight/2.5));canvas.width=W;canvas.height=H;for(const f of fish){f.x=f.x/oldW*W;f.y=f.y/oldH*H}backdrop.width=W;backdrop.height=H;const b=backdrop.getContext('2d');let g=b.createRadialGradient(W*.5,H*.42,0,W*.5,H*.5,Math.max(W,H)*.72);g.addColorStop(0,'#357b8c');g.addColorStop(.5,'#245c74');g.addColorStop(1,'#15364c');b.fillStyle=g;b.fillRect(0,0,W,H);for(let i=0;i<W*H*.045;i++){b.fillStyle=Math.random()<.5?'#9dd4db20':'#102d5028';b.fillRect(rand(0,W)|0,rand(0,H)|0,Math.random()<.1?2:1,1)}if(!pads.length)generatePads();else for(const p of pads){p.x*=W/oldW;p.y*=H/oldH;p.anchorX*=W/oldW;p.anchorY*=H/oldH;}
 motes=Array.from({length:40},()=>({x:rand(0,W),y:rand(0,H),p:rand(0,TAU)}));}
 // Stable leaf geometry is sampled once; water forces animate it without flickering.
 function generatePads(){
@@ -35,13 +36,56 @@ function generatePads(){
 function stepPads(dt){for(const p of pads){
  let ax=(p.anchorX+Math.sin(time*.11+p.phase)*7-p.x)*.12-p.vx*.8;
  let ay=(p.anchorY+Math.cos(time*.09+p.phase)*5-p.y)*.12-p.vy*.8;
- for(const r of ripples){const dx=p.x-r.x,dy=p.y-r.y,d=Math.hypot(dx,dy),age=time-r.t;const wave=Math.exp(-Math.pow((d-age*15)/7,2))*(1-age/4.8);if(d>1){ax+=dx/d*wave*5;ay+=dy/d*wave*5;}}
+ const flow=surfaceFlow(p.x,p.y);ax+=flow.x*.35;ay+=flow.y*.35;
+ for(const r of ripples){const dx=p.x-r.x,dy=p.y-r.y,d=Math.hypot(dx,dy),age=time-r.t,angle=Math.atan2(dy,dx),radius=waveRadius(r,age,angle);
+ const wave=Math.exp(-Math.pow((d-radius)/6,2))*Math.max(0,1-age/r.life)*r.strength;
+ if(d>1){ax+=dx/d*wave*10;ay+=dy/d*wave*10;}}
+
  for(const q of pads){if(q===p)continue;const dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy),gap=(p.r+q.r)*.82;if(d>0&&d<gap){ax+=dx/d*(gap-d)*.5;ay+=dy/d*(gap-d)*.5;}}
- p.vx+=ax*dt;p.vy+=ay*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.spin=Math.sin(time*.085+p.phase)*.12;
+ p.vx+=ax*dt;p.vy+=ay*dt;p.x=clamp(p.x+p.vx*dt,p.r+1,W-p.r-1);p.y=clamp(p.y+p.vy*dt,p.r+1,H-p.r-1);p.spin=Math.sin(time*.085+p.phase)*.12+(p.vx-p.vy)*.06;
 }}
-function sync(){const n=fish.filter(f=>!f.dying).length;$('#count').value=n;$('#population').value=n;$('#status').textContent=`${n} koi · ${paused?'en pausa':'agua en calma'}`;}
+// The same distorted wavefront drives both the visible contour and leaf forces.
+function waveRadius(r,age,angle){return (2+Math.max(0,age)*r.speed)*(1+.085*Math.sin(angle*3+r.seed+age*.3)+.045*Math.sin(angle*5-r.seed)+.055*Math.cos(angle*2+r.seed));}
+function addRipple(x,y,kind='touch'){
+ const r={x,y,t:time,seed:rand(0,TAU),kind,speed:kind==='rain'?10:kind==='breeze'?21:17,life:kind==='rain'?2.5:kind==='breeze'?8:5.5,strength:kind==='rain'?.23:kind==='breeze'?.85:1};
+ ripples.push(r);if(ripples.length>CONFIG.maxRipples)ripples.shift();return r;
+}
+function surfaceFlow(x,y){return {x:Math.sin(y*.021+time*.23)*1.2+Math.cos(time*.13)*.8,y:Math.sin(x*.017-time*.19)*.7};}
+function stepWeather(dt){
+ if(!weather.raining&&time>=weather.next){weather.raining=true;weather.until=time+rand(...CONFIG.rainDuration);sync();}
+ if(weather.raining&&time>=weather.until){weather.raining=false;weather.next=time+rand(...CONFIG.rainInterval);sync();}
+ weather.intensity+=((weather.raining?1:0)-weather.intensity)*(1-Math.exp(-dt*.24));
+ weather.drops+=dt*weather.intensity*clamp(W*H/18000,3,14);
+ while(weather.drops>=1){weather.drops--;addRipple(rand(0,W),rand(0,H),'rain');}
+ if(time>=breezeAt){breezeAt=time+rand(12,26);addRipple(rand(0,W),rand(0,H),'breeze');}
+}
+function drawSurface(){
+ // Intersecting wave bands create a shifting, broken caustic texture.
+ const sun=1-weather.intensity*.78;
+ for(let y=0;y<H;y+=5)for(let x=0;x<W;x+=5){
+  const a=Math.sin(x*.072+y*.028+time*.45+Math.sin(y*.041-time*.24));
+  const b=Math.sin(y*.094-x*.022-time*.38+Math.cos(x*.036+time*.18));
+  const crest=Math.pow(Math.max(0,1-Math.abs(a+b)*2.4),5);
+  if(crest>.10){ctx.fillStyle=`rgba(141,212,224,${crest*.095})`;ctx.fillRect(x,y,4,1);}
+  const area=Math.exp(-Math.pow((x-W*.63)/(W*.29),2)-Math.pow((y-H*.30)/(H*.34),2));
+  const glint=Math.pow(Math.max(0,(a+b)*.5),18)*area*sun;
+  if(glint>.04){ctx.fillStyle=`rgba(255,239,187,${glint*.66})`;ctx.fillRect(x,y,3+glint*8,1);if(glint>.4)ctx.fillRect(x+2,y-1,2,3);}
+ }
+ if(weather.intensity>.01){ctx.fillStyle=`rgba(26,49,76,${weather.intensity*.15})`;ctx.fillRect(0,0,W,H);}
+ for(const r of ripples){const age=time-r.t,count=r.kind==='rain'?1:2;
+  for(let i=0;i<count;i++){const a=age-i*.44;if(a<0||a>r.life)continue;
+   const alpha=Math.pow(Math.max(0,1-a/r.life),1.6)*(r.kind==='breeze'?.14:r.kind==='rain'?.28:.40);
+   ctx.strokeStyle=`rgba(190,227,231,${alpha})`;ctx.lineWidth=.7;ctx.beginPath();
+   for(let j=0;j<=72;j++){const angle=j*TAU/72,rad=waveRadius(r,a,angle),x=r.x+Math.cos(angle)*rad,y=r.y+Math.sin(angle)*rad;
+    if(j===0||Math.sin(angle*4+r.seed)>.86)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+   }ctx.stroke();
+  }
+  if(r.kind==='rain'&&age<.18){ctx.strokeStyle=`rgba(216,237,243,${(1-age/.18)*.45})`;ctx.beginPath();ctx.moveTo(r.x-1,r.y-4);ctx.lineTo(r.x,r.y);ctx.stroke();}
+ }
+}
+function sync(){const n=fish.filter(f=>!f.dying).length;$('#count').value=n;$('#population').value=n;$('#status').textContent=`${n} koi · ${paused?'en pausa':weather.raining?'lluvia suave':'agua en calma'}`;}
 function announce(s){$('#events').textContent=s;sync()}
-function step(dt){time+=dt;const pace=+$('#pace').value;
+function step(dt){time+=dt;stepWeather(dt);const neighbors=fish.map(f=>({x:f.x,y:f.y,a:f.a,velocity:f.velocity,length:f.length,dying:f.dying}));const pace=+$('#pace').value;
 for(const f of fish){f.age+=dt;f.cooldown=Math.max(0,f.cooldown-dt);if(f.dying){f.opacity-=dt/9;continue}// Each fish chooses a gently evolving heading, then steers with inertia.
 f.wanderClock+=dt;if(f.wanderClock>=f.wanderDuration){f.wander=f.wanderNext;f.wanderNext=rand(-1,1);f.wanderClock=0;f.wanderDuration=rand(3,7);}
 const u=f.wanderClock/f.wanderDuration,ease=u*u*(3-2*u),wander=f.wander+(f.wanderNext-f.wander)*ease;
@@ -52,15 +96,33 @@ if(f.target){const tx=f.target.x-f.x,ty=f.target.y-f.y,d=Math.hypot(tx,ty);dx+=t
 // Anticipate the shore rather than colliding with it and clamping every frame.
 const look=35+f.velocity*1.6,px=f.x+Math.cos(f.a)*look,py=f.y+Math.sin(f.a)*look,margin=40;
 dx+=Math.max(0,margin-px)/22-Math.max(0,px-W+margin)/22;dy+=Math.max(0,margin-py)/22-Math.max(0,py-H+margin)/22;
-for(const other of fish){if(other===f||other.dying)continue;const x=f.x-other.x,y=f.y-other.y,d=Math.hypot(x,y);if(d>0&&d<28){const strength=Math.pow(1-d/28,2)*1.5;dx+=x/d*strength;dy+=y/d*strength;}}
+let risk=0,alignmentX=0,alignmentY=0,centerX=0,centerY=0,companions=0;
+const fx=Math.cos(f.a),fy=Math.sin(f.a),self=fish.indexOf(f);
+for(let j=0;j<neighbors.length;j++){const other=neighbors[j];if(j===self||other.dying)continue;
+ const rx=other.x-f.x,ry=other.y-f.y,d=Math.hypot(rx,ry);if(d<.001||d>90)continue;
+ const personal=(f.length+other.length)*.48,forward=(rx*fx+ry*fy)/d;
+ if(d<personal){const force=Math.pow(1-d/personal,2)*4;dx-=rx/d*force;dy-=ry/d*force;}
+ // Predict closest approach from relative velocity; yield before bodies overlap.
+ const vx=Math.cos(other.a)*other.velocity-fx*f.velocity,vy=Math.sin(other.a)*other.velocity-fy*f.velocity;
+ const closest=clamp(-(rx*vx+ry*vy)/(vx*vx+vy*vy+.001),0,1.8);
+ const cx=rx+vx*closest,cy=ry+vy*closest,miss=Math.hypot(cx,cy);
+ if(forward>0&&miss<personal&&closest>0){const urgency=(1-miss/personal)*(1-closest/2.2),side=fx*ry-fy*rx>=0?-1:1;
+ dx+=-fy*side*urgency*2.3;dy+=fx*side*urgency*2.3;risk=Math.max(risk,urgency);}
+ const parallel=Math.cos(other.a-f.a);
+ if(d>personal&&d<72&&forward>-.3&&parallel>.35){alignmentX+=Math.cos(other.a);alignmentY+=Math.sin(other.a);centerX+=rx/d;centerY+=ry/d;companions++;}
+}
+// Koi only loosely accompany neighbors, with individual periods of sociability.
+if(companions){const sociability=f.social*(.5+.5*Math.sin(time*.12+f.phase))*(1-f.interest*.7);dx+=(alignmentX/companions*.6+centerX/companions*.18)*sociability;dy+=(alignmentY/companions*.6+centerY/companions*.18)*sociability;}
+f.yielding+=(risk-f.yielding)*(1-Math.exp(-dt*3));
+
 const diff=Math.atan2(Math.sin(Math.atan2(dy,dx)-f.a),Math.cos(Math.atan2(dy,dx)-f.a));
 f.turn+=(clamp(diff*1.6,-1.15,1.15)-f.turn)*(1-Math.exp(-dt*2.8));f.a+=f.turn*dt;
-const cruise=f.speed*pace*(.92+.12*Math.sin(time*.7+f.phase))*(1+f.interest*f.curiosity*.35);
+const cruise=f.speed*pace*(.92+.12*Math.sin(time*.7+f.phase))*(1+f.interest*f.curiosity*.35)*(1-f.yielding*.38);
 f.velocity+=(cruise-f.velocity)*(1-Math.exp(-dt*1.2));f.stroke+=dt*(3.2+f.velocity*.12);
 f.x=clamp(f.x+Math.cos(f.a)*f.velocity*dt,2,W-2);f.y=clamp(f.y+Math.sin(f.a)*f.velocity*dt,2,H-2);}
 stepPads(dt);
 
-fish=fish.filter(f=>f.opacity>0);targets=targets.filter(t=>time-t.t<12);ripples=ripples.filter(r=>time-r.t<4.8);
+fish=fish.filter(f=>f.opacity>0);targets=targets.filter(t=>time-t.t<12);ripples=ripples.filter(r=>time-r.t<r.life);
 if($('#life').checked){if(time>birthAt){birthAt=time+rand(...CONFIG.birthInterval);const adults=fish.filter(f=>f.age>CONFIG.matureAge&&!f.dying);let pair;for(const f of adults){pair=adults.find(o=>o!==f&&Math.hypot(o.x-f.x,o.y-f.y)<65);if(pair){pair=f;break}}if(pair&&fish.length<CONFIG.maxFish){fish.push(makeFish(pair.x+5,pair.y+5,true));announce('Ha nacido un alevín.')}}if(time>deathAt){deathAt=time+rand(...CONFIG.deathInterval);const elders=fish.filter(f=>f.age>1800&&!f.dying);if(elders.length&&fish.length>2){elders.sort((a,b)=>b.age-a.age)[0].dying=true;announce('Un koi se ha despedido suavemente.')}}}
 else{birthAt=time+rand(...CONFIG.birthInterval);deathAt=time+rand(...CONFIG.deathInterval)}}
 function polygon(points,color){ctx.fillStyle=color;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fill()}
@@ -79,14 +141,12 @@ for(let x=-L*.5;x<L*.5;x+=1){let u=(x+L*.5)/L;let w=Math.pow(Math.sin(u*Math.PI)
 if(!shadow){ctx.fillStyle='#183233';ctx.fillRect(Math.round(L*.34),Math.round(-B*.39),1,1);ctx.fillRect(Math.round(L*.34),Math.round(B*.39),1,1);ctx.fillStyle=light;ctx.fillRect(Math.round(L*.35),-1,2,1)}ctx.restore()}
 function draw(){ctx.drawImage(backdrop,0,0);for(const m of motes){ctx.fillStyle='#b4c58922';ctx.fillRect(Math.round((m.x+Math.sin(time*.05+m.p)*8+W)%W),Math.round(m.y+Math.cos(time*.09+m.p)*3),1,1)}
 for(const f of fish)drawFish(f,true);for(const f of fish)drawFish(f);
-// Sparse, slow surface glints, drawn at the same pixel resolution as the fish.
-ctx.lineWidth=1;for(let i=0;i<18;i++){let x=(i*97.3+time*.65)%W,y=(i*53.9)%H;ctx.strokeStyle=`rgba(151,193,153,${.035+.025*Math.sin(time*.5+i)})`;ctx.beginPath();ctx.ellipse(x,y,16+Math.sin(time*.3+i)*5,2,0,0,Math.PI*1.2);ctx.stroke()}
-for(const r of ripples){const age=time-r.t;for(let i=0;i<3;i++){let a=age-i*.35;if(a<0)continue;ctx.strokeStyle=`rgba(191,221,182,${Math.max(0,(1-a/4.8)*.35)})`;ctx.beginPath();ctx.ellipse(r.x,r.y,2+a*15,2+a*15,0,0,TAU);ctx.stroke()}}
+drawSurface();
 for(const p of pads){ctx.save();ctx.translate(p.x+3,p.y+5);ctx.rotate(p.a+p.spin);polygon(p.points,'#071f2b50');ctx.restore();ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a+p.spin);polygon(p.points,['#385e41','#486e45','#315941'][p.tone]);ctx.save();ctx.clip();const shade=ctx.createLinearGradient(-p.r,-p.r,p.r,p.r);shade.addColorStop(0,'#b1c07830');shade.addColorStop(.5,'#60895608');shade.addColorStop(1,'#082f3260');ctx.fillStyle=shade;ctx.fillRect(-p.r*1.2,-p.r*1.2,p.r*2.4,p.r*2.4);ctx.restore();
 ctx.lineWidth=.65;ctx.strokeStyle='#abc38428';for(let i=1;i<7;i++){const a=i*TAU/7;ctx.beginPath();ctx.moveTo(p.r*.08,0);ctx.quadraticCurveTo(Math.cos(a+.18)*p.r*.35,Math.sin(a+.18)*p.r*.35,Math.cos(a)*p.r*.79,Math.sin(a)*p.r*.74);ctx.stroke()}ctx.restore()}}
 
 function frame(now){let dt=Math.min((now-last)/1000||0,.05);last=now;if(!paused&&!document.hidden)step(dt);draw();requestAnimationFrame(frame)}
-function splash(x,y){if(paused)return;const t={x,y,t:time};ripples.push(t);targets.push(t);if(ripples.length>16)ripples.shift();if(targets.length>8)targets.shift();for(const f of fish)if(!f.dying&&f.cooldown===0&&Math.hypot(f.x-x,f.y-y)<Math.min(150,W*.45)&&Math.random()<f.curiosity){f.target=t}}
+function splash(x,y){if(paused)return;const t=addRipple(x,y);targets.push(t);if(targets.length>8)targets.shift();for(const f of fish)if(!f.dying&&f.cooldown===0&&Math.hypot(f.x-x,f.y-y)<Math.min(150,W*.45)&&Math.random()<f.curiosity){f.target=t}}
 canvas.addEventListener('pointerdown',e=>{const r=canvas.getBoundingClientRect();splash((e.clientX-r.left)/r.width*W,(e.clientY-r.top)/r.height*H)});
 $('#population').addEventListener('input',e=>{fish=fish.filter(f=>!f.dying);let n=+e.target.value;while(fish.length<n)fish.push(makeFish());fish.length=n;sync()});$('#pace').addEventListener('input',e=>$('#paceValue').value=+e.target.value<.8?'Muy suave':+e.target.value<1.2?'Pausado':'Animado');
 $('#settings').onclick=()=>{const open=$('#panel').hidden;$('#panel').hidden=!open;$('#settings').setAttribute('aria-expanded',String(open))};
