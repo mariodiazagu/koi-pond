@@ -67,11 +67,11 @@ function stepWeather(dt){
 }
 function drawSurface(){
  // A gently warped cellular field: faint caustic seams inspired by the reference.
- const cell=48;
+ const cell=16;
  for(let y=0;y<H;y+=3)for(let x=0;x<W;x+=3){
-  const wx=x+Math.sin(y*.022+time*.18)*7,wy=y+Math.sin(x*.018-time*.14)*7,gx=Math.floor(wx/cell),gy=Math.floor(wy/cell);let first=Infinity,second=Infinity;
-  for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++){const cx=gx+i,cy=gy+j,seed=Math.sin(cx*127.1+cy*311.7)*43758.5453,q=seed-Math.floor(seed),px=(cx+.5)*cell+Math.sin(q*TAU+time*.10)*12,py=(cy+.5)*cell+Math.cos(q*17+time*.08)*12,d=Math.hypot(wx-px,wy-py);if(d<first){second=first;first=d;}else if(d<second)second=d;}
-  const edge=Math.exp(-Math.pow((second-first)/2.8,2)),veil=.45+.55*Math.pow(Math.sin(x*.008+y*.005),2);if(edge>.05){ctx.fillStyle=`rgba(182,228,233,${edge*veil*.065*(1-weather.intensity*.5)})`;ctx.fillRect(x,y,3,3);}
+  const wx=x+Math.sin(y*.035+time*.10)*1.5,wy=y+Math.sin(x*.030-time*.08)*1.5,gx=Math.floor(wx/cell),gy=Math.floor(wy/cell);let first=Infinity,second=Infinity;
+  for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++){const cx=gx+i,cy=gy+j,seed=Math.sin(cx*127.1+cy*311.7)*43758.5453,q=seed-Math.floor(seed),px=(cx+.5)*cell+Math.sin(q*TAU)*3.5+Math.sin(q*11+time*.07)*.8,py=(cy+.5)*cell+Math.cos(q*17)*3.5+Math.cos(q*13+time*.06)*.8,d=Math.hypot(wx-px,wy-py);if(d<first){second=first;first=d;}else if(d<second)second=d;}
+  const edge=Math.exp(-Math.pow((second-first)/1.0,2)),veil=.45+.55*Math.pow(Math.sin(x*.008+y*.005),2);if(edge>.05){ctx.fillStyle=`rgba(182,228,233,${edge*veil*.055*(1-weather.intensity*.5)})`;ctx.fillRect(x,y,3,3);}
  }
  // Intersecting wave bands create a shifting, broken caustic texture.
  const sun=1-weather.intensity*.78;
